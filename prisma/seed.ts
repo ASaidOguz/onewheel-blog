@@ -1,12 +1,11 @@
 import {  PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import invariant from "tiny-invariant";
+
 
 const prisma = new PrismaClient();
 
 export async function loader() {
-  invariant(process.env.ADMIN_EMAIL!=undefined,"Need to be string")
-  invariant(process.env.ADMIN_PASSWORD!=undefined,"Need to be string")
+
   return ({email:process.env.ADMIN_EMAIL,
                password:process.env.ADMIN_PASSWORD})
 }
