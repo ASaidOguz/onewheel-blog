@@ -1,24 +1,24 @@
 import {  PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import invariant from "tiny-invariant";
+//import invariant from "tiny-invariant";
 
 const prisma = new PrismaClient();
 
-export async function loader() {
+/* export async function loader() {
   invariant(process.env.ADMIN_EMAIL!=undefined,"Need to be string")
   invariant(process.env.ADMIN_PASSWORD!=undefined,"Need to be string")
   return ({email:process.env.ADMIN_EMAIL,
                password:process.env.ADMIN_PASSWORD})
-}
+} */
 async function seed() {
-  
-  const {email,password}=await loader()
+  const email="rachel@remix.run"
+  //const {email,password}=await loader()
   // cleanup the existing database
   await prisma.user.delete({ where: { email } }).catch(() => {
     // no worries if it doesn't exist yet
   });
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash("rachelcool", 10);
 
   const user = await prisma.user.create({
     data: {
